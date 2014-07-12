@@ -87,8 +87,10 @@ $("select").focus(function(){
      $('ul.setup-panel li.active a').trigger('click');
 
      // DEMO ONLY //
-     data["form_error"] = false;
+
      $('#activate-step-2').on('click', function(e) {
+         $("#error_message_no_answer").hide();
+         data["form_error"] = false;
          get_element_value("insurance", "Do you have Life insurance?");
          get_element_value("tdp_insurance", "Do you have Total & Permanent Disablement (TDP) insurance?");
          get_element_value("trauma_insurance" , "Do you have Trauma insurance?");
@@ -96,10 +98,10 @@ $("select").focus(function(){
          get_checkbox_value("generale_insurance","Which of the following general insurances do you have?");
          get_element_value_noselect("cover_exclusions", "Does your current insurance cover have default exclusions?");
          if (data["form_error"] == false) {
-         $('ul.setup-panel li:eq(1)').removeClass('disabled');
-         $('ul.setup-panel li:eq(0)').addClass('disabled');
-         $('ul.setup-panel li a[href="#step-2"]').trigger('click');
-             $("html, body").animate({ scrollTop: 0 }, 600);
+            $('ul.setup-panel li:eq(1)').removeClass('disabled');
+            $('ul.setup-panel li:eq(0)').addClass('disabled');
+            $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+            $("html, body").animate({ scrollTop: 0 }, 600);
          }
 //         return false;
 //         $(this).remove();
@@ -205,7 +207,7 @@ $("select").focus(function(){
              default:
                  $("html, body").animate({ scrollTop: 0 }, 600);
                  $('#error_message_no_answer').html("Please answer to question" + error_description).fadeIn(500);
-
+                 data["form_error"] = true;
 
                  break;
          }
@@ -233,6 +235,6 @@ $("select").focus(function(){
 //         $("html, body").animate({ scrollTop: 0 }, 600);
 //         return false;
 //     });
-
+     $("#email_form").val($.cookie("email"));
 
  });
