@@ -88,6 +88,18 @@
 //         return false;
 //         $(this).remove();
      });
+//     $('#activate-finish').on('click', function(e) {
+//         $("#error_message_no_answer").hide();
+//         data["form_error"] = false;
+//         if (data["form_error"] == false) {
+//             $('ul.setup-panel li:eq(2)').removeClass('disabled');
+//             $('ul.setup-panel li:eq(1)').addClass('disabled');
+//             $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+//             $("html, body").animate({ scrollTop: 0 }, 600);
+//         }
+//         return false;
+//         $(this).remove();
+//     });
 
      function get_element_value(element_name, error_description) {
          var radio_val = $("input[name=" + element_name + "]:checked").val();
@@ -173,8 +185,66 @@
          }
 
      }
-     $("#email_form")
-         .val($.cookie("email"));
+     $("#email_form").val($.cookie("email"));
 
+     $('#togglingForm').bootstrapValidator({
+         message: 'This value is not valid',
+         excluded: [':disabled'],
+         feedbackIcons: {
+             valid: 'glyphicon glyphicon-ok',
+             invalid: 'glyphicon glyphicon-remove',
+             validating: 'glyphicon glyphicon-refresh'
+         },
+         fields: {
+             fullName: {
+                 validators: {
+                     notEmpty: {
+                         message: 'The username is required'
+                     }
+                 }
+             },
+             date_of_birth: {
+                 validators: {
+                     notEmpty: {
+                         message: 'The date is required'
+                     }
+                 }
+             },
+             phone: {
+                 validators: {
+                     notEmpty: {
+                         message: 'The phone is required'
+                     },
+                     digits: {
+                         message: 'The phone is not valid'
+                     }
+                 }
+             },
+             postcode: {
+                 validators: {
+                     notEmpty: {
+                         message: 'The postcode is required'
+                     },
+                     digits: {
+                         message: 'The postcode is not valid'
+                     }
+                 }
+             },
+             occupation: {
+                 validators: {
+                     notEmpty: {
+                         message: 'The occupation is required'
+                     }
+                 }
+             }
+         }
+     })
+         .find('[name="date_of_birth"]').mask('00/00/0000');
+     $('#activate-finish').click(function(){
+         $('#drop_page').hide();
+         $('#result_page').fadeIn(500);
+     });
+     $("#answer1").html(data["insurance"]);
+     console.log(data["insurance"]);
 
  });

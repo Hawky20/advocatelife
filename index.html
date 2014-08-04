@@ -4,6 +4,9 @@
     <link rel='stylesheet' href='bootstrap/css/bootstrap.min.css'>
 	<link rel='stylesheet' href='style.css'/>
     <script src='jquery/jquery-1.11.1.min.js'></script>
+    <script src='jquery/jquery.mask.min.js'></script>
+    <script src='bootstrap/js/bootstrapValidator.js'></script>
+    <script src='bootstrap/js/bootstrap.js'></script>
     <script src='jquery/jquery.cookie.js'></script>
 	<script type='text/javascript' src='script.js'></script>
 </head>
@@ -54,8 +57,9 @@
     </div>
     <div class="col-md-7">
     <div class="alert alert-danger" id="error_message" style="display: none"> Please enter email address</div>
-    <input class="form-control" id="email" name="email" type="text" value="" /><br>
-    <button class="btn btn-warning" id="button" name="button" type="submit">Start Insurance Assesment</button>
+    <input class="form-control" id="email" name="email" required
+           type="email" data-bv-emailaddress-message="The input is not a valid email address"/><br>
+    <button class="btn btn-warning" id="button" name="button" type="submit">Start Insurance Assessment</button>
     </div>
     </div>
     </div>
@@ -454,8 +458,24 @@
                     <!--</div>-->
                 </div>
             </div>
+            <!--<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>-->
         </div>
+
         </div>
+<div id="result_page" class="result_page" style="display:none">
+    <div class="container">
+        <h1 class="text-center">Result</h1>
+        <table>
+            <tr>
+                <td id="question1">
+                    Question1
+                </td>
+                <td id="answer1">
+                    Answer
+                </td>
+            </tr>
+        </table>
     </div>
+</div>
 </body>
 </html>
