@@ -85,21 +85,7 @@
              $('ul.setup-panel li a[href="#step-3"]').trigger('click');
              $("html, body").animate({ scrollTop: 0 }, 600);
          }
-//         return false;
-//         $(this).remove();
      });
-//     $('#activate-finish').on('click', function(e) {
-//         $("#error_message_no_answer").hide();
-//         data["form_error"] = false;
-//         if (data["form_error"] == false) {
-//             $('ul.setup-panel li:eq(2)').removeClass('disabled');
-//             $('ul.setup-panel li:eq(1)').addClass('disabled');
-//             $('ul.setup-panel li a[href="#step-3"]').trigger('click');
-//             $("html, body").animate({ scrollTop: 0 }, 600);
-//         }
-//         return false;
-//         $(this).remove();
-//     });
 
      function get_element_value(element_name, error_description) {
          var radio_val = $("input[name=" + element_name + "]:checked").val();
@@ -175,7 +161,7 @@
          if ($("input[name=" + element_name + "]:checked").length > 0) {
              $("input[name=" + element_name + "]:checked").each(function(){
 //             console.log($(this));
-                 data[element_name] += $(this).val() + ";";
+                 data[element_name] += $(this).val();
                  console.log(data);
              });
          } else {
@@ -241,10 +227,80 @@
      })
          .find('[name="date_of_birth"]').mask('00/00/0000');
      $('#activate-finish').click(function(){
+         result_input("insurance","answer1");
+         result_input("tdp_insurance","answer2");
+         result_input("trauma_insurance","answer3");
+         result_input("income_insurance","answer4");
+         result_checkbox("generale_insurance","answer5");
+         result_input("cover_exclusions","answer6");
          $('#drop_page').hide();
          $('#result_page').fadeIn(500);
      });
-     $("#answer1").html(data["insurance"]);
-     console.log(data["insurance"]);
 
+     function result_input (name_property,id) {
+         var property_value = data[name_property];
+         console.log(property_value);
+         switch (property_value) {
+             case 1:
+                 $('#' + id).html("Yes");
+                 break;
+             case 0:
+                 $('#' + id).html("No");
+                 break;
+             case "100000":
+                 $('#' + id).html("Yes i have insurance less than $100,000");
+                 break;
+             case "150000":
+                 $('#' + id).html("Yes i have insurance $100,000 - $250,000");
+                 break;
+             case "1000000":
+                 $('#' + id).html("Yes i have insurance $500,000 - $1,000,000");
+                 break;
+             case "1500000":
+                 $('#' + id).html("Yes i have insurance $1,000,000 - $1,500,000");
+                 break;
+             case "2000000":
+                 $('#' + id).html("Yes i have insurance $1,500,000 - $2,000,000");
+                 break;
+             case "2100000":
+                 $('#' + id).html("Yes i have insurance $2,000,000 or more");
+                 break;
+             default :
+                 $('#' + id).html("Not sure");
+                 console.log("Fail");
+         }
+     }
+
+     function result_checkbox (name_property, id) {
+         var property_value = data[name_property];
+         var result_string = "";
+         console.log(property_value);
+         for (i=0;i<property_value.length;i++) {
+             console.log(property_value[i]);
+             switch (property_value[i]) {
+                 case "1":
+                     result_string += "Home and contents insurance; ";
+                     break;
+                 case "2":
+                     result_string += "Motor vehicle Insurance; ";
+                     break;
+                 case "3":
+                     result_string += "Private health insurance; ";
+                     break;
+                 case "4":
+                     result_string += "Travel insurance; ";
+                     break;
+                 case "5":
+                     result_string += "Pet insurance; ";
+                     break;
+                 case "6":
+                     result_string += "Landlord insurance; ";
+                     break;
+                 default :
+                     result_string = "None";
+                     break;
+             }
+         }
+         $('#' + id).html(result_string);
+     }
  });
