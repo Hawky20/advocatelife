@@ -28,14 +28,11 @@
     });
 
      $("input.gi_none").click(function(){
-
-         if ($("input.gi_none").attr("checked", true)) {
-    //             alert("None selected");
+         if ($("input.gi_none:checked").length >0) {
              $(this).parents().find("input.gi").attr("checked", false).attr("disabled", true);
                  console.log("None yes")
-             } else if ($("input.gi_none").attr("checked", false)) {
-             $(this).parents().find("input.gi").attr("checked", false).attr("disabled", false);
-    //             alert("None not selected");
+             } else {
+             $(this).parents().find("input.gi").removeAttr("disabled");
                  console.log("None no");
              }
      });
