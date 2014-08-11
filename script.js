@@ -75,18 +75,18 @@
          $('ul.setup-panel li:eq(1)').addClass('disabled');
          $('ul.setup-panel li:eq(0)').addClass('disabled');
          $('ul.setup-panel li a[href="#step-3"]').trigger('click');
-         get_element_value("insurance", "Do you have Life insurance?");
-         get_element_value("tdp_insurance", "Do you have Total & Permanent Disablement (TDP) insurance?");
-         get_element_value("trauma_insurance" , "Do you have Trauma insurance?");
-         get_element_value("income_insurance", "Do you have Income Protection insurance?");
-         get_checkbox_value("generale_insurance","Which of the following general insurances do you have?");
-         get_element_value_noselect("cover_exclusions", "Does your current insurance cover have default exclusions?");
-         get_element_value("debt", "Do you have any debt?");
-         get_element_value_noselect("children", "How many dependent children do you have?");
-         get_element_value_noselect("family_survive", "Would your family or loved ones be able to survive financially without you if you were to pass away?");
-         get_element_value_noselect("cost_of_living", "If you were unable to ever work again, how would you meet your cost of living?");
-         get_element_value_noselect("last_time_insurance", "When was the last time you had your existing insurance or your overall insurance need reviewed?");
-         get_element_value_noselect("health_wellness", "Are you actively participating in a structured Health and Wellness program to assist you in meeting your Health and Wellness goals and to recrease your likelihood of ever needing to claim on insurance for health reasons?");
+         get_element_value("insurance");
+         get_element_value("tdp_insurance");
+         get_element_value("trauma_insurance");
+         get_element_value("income_insurance");
+         get_checkbox_value("generale_insurance");
+         get_element_value_noselect("cover_exclusions");
+         get_element_value("debt");
+         get_element_value_noselect("children");
+         get_element_value_noselect("family_survive");
+         get_element_value_noselect("cost_of_living");
+         get_element_value_noselect("last_time_insurance");
+         get_element_value_noselect("health_wellness");
      }
 
      $('#activate-step-2').on('click', function(e) {
@@ -179,6 +179,7 @@
          })
 //             .find('[name="date_of_birth"]').mask('00/00/0000')
              .bootstrapValidator('validate');
+         $('#togglingForm').bootstrapValidator().find('[name="date_of_birth"]').mask('00/00/0000');
 //         alert("Validate called");
          if ($('#togglingForm').data('bootstrapValidator').isValid()){
              alert("Valid");
