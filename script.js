@@ -2,7 +2,6 @@
      var data = {
          "form_error": false
      };
-     $("input.gi").removeAttr("disabled");
      if ($.cookie("email")) {
          $('#main_page').hide();
          $('#drop_page').fadeIn(500);
@@ -289,13 +288,11 @@
              $("input[name=" + element_name + "]:checked").each(function(){
                  if ($(this).val() == "0"){
                      data[element_name] = "0";
-                     console.log(data);
-                     console.log("None Yes");
                  } else {
                      data[element_name] += $(this).val();
-                     console.log("None No");
                      console.log(data);
                  }
+                 console.log(data);
              });
          } else {
              $("html, body").animate({ scrollTop: 0 }, 600);
