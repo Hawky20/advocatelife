@@ -176,10 +176,10 @@
                      }
                  }
              }
-         })
-//             .find('[name="date_of_birth"]').mask('00/00/0000')
-             .bootstrapValidator('validate');
-         $('#togglingForm').bootstrapValidator().find('[name="date_of_birth"]').mask('00/00/0000');
+         }).bootstrapValidator('validate');
+
+         $('#togglingForm').find('[name="date_of_birth"]').mask('00/00/0000');
+
 //         alert("Validate called");
          if ($('#togglingForm').data('bootstrapValidator').isValid()){
              alert("Valid");
@@ -212,6 +212,21 @@
              alert ("Not valid");
              return false;
          }
+     });
+
+     $('#back_to_step1').on('click', function(e) {
+             $('ul.setup-panel li:eq(0)').removeClass('disabled');
+             $('ul.setup-panel li:eq(1)').addClass('disabled');
+             $('ul.setup-panel li a[href="#step-1"]').trigger('click');
+             $.cookie("current_step", 1);
+             $("html, body").animate({ scrollTop: 0 }, 600);
+         });
+     $('#back_to_step2').on('click', function(e) {
+         $('ul.setup-panel li:eq(1)').removeClass('disabled');
+         $('ul.setup-panel li:eq(2)').addClass('disabled');
+         $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+         $.cookie("current_step", 2);
+         $("html, body").animate({ scrollTop: 0 }, 600);
      });
 
      function get_element_value(element_name, error_description) {
