@@ -206,7 +206,7 @@
              $("html, body").animate({ scrollTop: 0 }, 600);
              $('#drop_page').hide();
              $('#result_page').fadeIn(500);
-//             $.cookie("email", null, {expires: -1});
+             $.cookie("email", null, {expires: -1});
              $.cookie("current_step", null, {expires: -1});
          } else {
              alert ("Not valid");
